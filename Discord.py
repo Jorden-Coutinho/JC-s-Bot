@@ -1,5 +1,6 @@
 import discord
 import random
+import time
 
 TOKEN = 'OTMyMjg3MzM5NzA1ODI3MzM5.YeQyPg.l5-LEo-vhLBT1MjQmeP3fzg9Cgk'
 
@@ -21,7 +22,11 @@ async def on_message(message):
 
     if message.channel.name == 'bot-test':
         if user_message.lower() == 'ping':
-            await message.channel.send(f'pong🏓 {username}!')
+            start = time.time()
+            loading_msg = await message.channel.send(f'Calculating ping...')
+            finish = time.time()
+            await loading_msg.edit(content=f':ping_pong: Pong! Ping is {finish - start}s')
+            
             return 
         elif user_message.lower() == 'bye':
             await message.channel.send(f'See you later {username}!')
