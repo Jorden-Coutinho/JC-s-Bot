@@ -16,8 +16,6 @@ async def on_message(message):
     user_message = message.content
     channel = message.channel.name
     
-    # this is really invading user's privacy, dont you think?
-    print(f'{username}: {user_message} ({channel})') 
 
     if message.author == client.user:
         return
@@ -31,8 +29,7 @@ async def on_message(message):
             await loading_msg.edit(content=f':ping_pong: Pong! in {ping_ms}ms')
         elif user_message.lower() == 'bye':
             await message.channel.send(f'Ta-Ta See you later {username}!')
-        elif user_message == 'jc!random'
-            await loading_msg.edit(content=f'This is your random number: {random.randint(0, 10)}')
- 
+        elif user_message == 'jc!random':
+                await message.reply(content=f'This is your random number {random.randint(0, 10)}')
+    
 client.run(TOKEN)   
-
