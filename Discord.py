@@ -1,4 +1,3 @@
-from email import message
 import discord
 import random
 
@@ -17,15 +16,15 @@ async def on_message(message):
     channel = str(message.channel.name)
     print(f'{username}: {user_message} ({channel})') 
 
-if message.author == client.user:
-    return
-
-if message.channel.name == 'bot-test':
-    if user_message.lower() == 'ping':
-        await message.channel.send(f'pong🏓 {username}!')
-        return 
-    elif user_message.lower() == 'bye':
-        await message.channel.send(f'See you later {username}!')
+    if message.author == client.user:
         return
-    elif user_message.lower() == 'random'
+
+    if message.channel.name == 'bot-test':
+        if user_message.lower() == 'ping':
+            await message.channel.send(f'pong🏓 {username}!')
+            return 
+        elif user_message.lower() == 'bye':
+            await message.channel.send(f'See you later {username}!')
+            return
+        elif user_message.lower() == 'random'
 client.run(TOKEN)
