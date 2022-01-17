@@ -26,5 +26,5 @@ async def on_message(message):
         elif user_message.lower() == 'bye':
             await message.channel.send(f'See you later {username}!')
             return
-        elif user_message.lower() == 'random'
+
 client.run(TOKEN)
