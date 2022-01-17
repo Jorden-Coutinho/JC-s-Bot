@@ -12,7 +12,7 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    username = message.author.username
+    username = message.author.name
     user_message = message.content
     channel = message.channel.name
     
