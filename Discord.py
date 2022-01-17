@@ -1,6 +1,8 @@
+from email import message
 import discord
 import random
 import time
+import random
 
 TOKEN = 'OTMyMjg3MzM5NzA1ODI3MzM5.YeQyPg.l5-LEo-vhLBT1MjQmeP3fzg9Cgk'
 
@@ -23,16 +25,30 @@ async def on_message(message):
         return
 
     if message.channel.name == 'bot-test':
-        if user_message.lower() == 'jc!ping':
+        if user_message == 'jc!ping':
             start = time.time()
             loading_msg = await message.channel.send(f'Calculating ping...')
             finish = time.time()
             ping_ms = int((finish - start) * 1000)
-            await loading_msg.edit(content=f':ping_pong: Pong! Ping is {ping_ms}ms')
+            await loading_msg.edit(content=f':ping_pong: Pong! in {ping_ms}ms')
             
             return 
         elif user_message.lower() == 'bye':
             await message.channel.send(f'Ta-Ta See you later {username}!')
             return
 
+
+    if message.channel.name == 'bot-test':
+        if user_message == 'jc!Ping':
+            start = time.time()
+            loading_msg = await message.channel.send(f'Calculating ping...')
+            finish = time.time()
+            ping_ms = int((finish - start) * 1000)
+            await loading_msg.edit(content=f':ping_pong: Pong! in {ping_ms}ms')
+random.choice [1,2,3,4,5]
+
+if message.channel.name == 'bot-test':
+    if user_message == 'jc!random'
+        await loading_msg.edit(content=f random.choice 'This is your random number')
 client.run(TOKEN)   
+
