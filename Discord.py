@@ -25,7 +25,8 @@ async def on_message(message):
             start = time.time()
             loading_msg = await message.channel.send(f'Calculating ping...')
             finish = time.time()
-            await loading_msg.edit(content=f':ping_pong: Pong! Ping is {finish - start}s')
+            ping_ms = int((finish - start) * 1000)
+            await loading_msg.edit(content=f':ping_pong: Pong! Ping is {ping_ms}ms')
             
             return 
         elif user_message.lower() == 'bye':
