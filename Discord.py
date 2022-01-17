@@ -21,7 +21,7 @@ async def on_message(message):
         return
 
     if message.channel.name == 'bot-test':
-        if user_message.lower() == 'ping':
+        if user_message.lower() == 'jc!ping':
             start = time.time()
             loading_msg = await message.channel.send(f'Calculating ping...')
             finish = time.time()
@@ -30,7 +30,7 @@ async def on_message(message):
             
             return 
         elif user_message.lower() == 'bye':
-            await message.channel.send(f'See you later {username}!')
+            await message.channel.send(f'Ta-Ta See you later {username}!')
             return
 
-client.run(TOKEN)
+client.run(TOKEN)   
