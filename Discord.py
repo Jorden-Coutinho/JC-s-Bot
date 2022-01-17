@@ -12,9 +12,11 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    username = str(message.author).split('#')[0]
-    user_message = str(message.content)
-    channel = str(message.channel.name)
+    username = message.author.username
+    user_message = message.content
+    channel = message.channel.name
+    
+    # this is really invading user's privacy, dont you think?
     print(f'{username}: {user_message} ({channel})') 
 
     if message.author == client.user:
