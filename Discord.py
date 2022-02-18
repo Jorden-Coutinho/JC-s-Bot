@@ -143,7 +143,7 @@ async def on_message(message):
     async def on_message_edit(before,after):
         em = discord.Embed(title = f"{before.author} edited a message", color = discord.Color.blue())
         em.add_field(name = "Before",value = before.content)
-        em.add_field(name = "Bank Balance",value = after.content)
+        em.add_field(name = "After",value = after.content)
         await message.channel.send(em)
 
 member = discord.member 
