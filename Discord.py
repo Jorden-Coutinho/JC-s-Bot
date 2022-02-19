@@ -1,3 +1,4 @@
+from calendar import c
 from importlib.resources import contents
 import discord
 from discord.ext import commands
@@ -5,6 +6,9 @@ import random
 import time
 from discord.ext import commands
 import json
+from discord import message
+from discord import channel
+from discord import Embed
 
 TOKEN = 'OTMyMjg3MzM5NzA1ODI3MzM5.YeQyPg.l5-LEo-vhLBT1MjQmeP3fzg9Cgk'
 
@@ -82,11 +86,14 @@ async def on_message(message):
     elif 'jorden' in message.content:
       await message.channel.send(f'What now??')
     
+    elif 'sz_skill' in message.content:
+      await message.channel.send(f'What now?? I am Busy ~sz_skill')
+
     elif 'Jorden' in message.content:
       await message.channel.send(f'What now??')
 
     elif message.content == 'jorden':
-      await message.add_reaction('☠️')
+      await message.channel.send('+:skull:')
 
     if message.content.startswith('b!ping'):
         start = time.time()
@@ -134,17 +141,21 @@ async def on_message(message):
     elif user_message == 'b!spam':
       while x == 1:
         await message.channel.send(f'Spam')
+    
+    elif user_message.lower() == 'b! botinfo':
+        em = discord.Embed(title = f"Bili Bot Info" , color = discord.Color.gold())
+        em.add_field(name = "Bot Team",value = "JC |#6241 and sz_skill\#5551", inline=False)
+        em.add_field(name = "Partners",value = "Gamer's Galaxy (Server)",inline=False)
+        await message.channel.send(embed=em)
 
 
+@client.event
+async def on_message_edit(before,after):
 
+    em = discord.Embed(title = f"{before.author} edited a message", color = discord.Color.blue())
+    em.add_field(name = "Before",value = before.content )
+    em.add_field(name = "After",value = after.content, )
+    await after.channel.send(embed=em)
 
-
-    @client.event
-    async def on_message_edit(before,after):
-        em = discord.Embed(title = f"{before.author} edited a message", color = discord.Color.blue())
-        em.add_field(name = "Before",value = before.content)
-        em.add_field(name = "After",value = after.content)
-        await message.channel.send(em)
-
-member = discord.member 
+    member = discord.member 
 client.run(TOKEN)
