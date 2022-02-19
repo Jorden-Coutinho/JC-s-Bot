@@ -58,8 +58,7 @@ async def on_message(message):
 
     elif user_message.lower() == 'b! help':
         em = discord.Embed(title = f"All commands" , color = discord.Color.gold())
-        em.add_field(name = "",value = "JC |#6241 and sz_skill\#5551", inline=False)
-        em.add_field(name = "Partners",value = "Gamer's Galaxy (Server)",inline=False)
+        em.add_field(name = "Currency Commands",value = "", inline=False)
         await message.channel.send(embed=em)
         
     elif user_message.lower() == 'b! hunt':
