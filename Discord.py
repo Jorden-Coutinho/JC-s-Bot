@@ -46,10 +46,7 @@ async def on_message(message):
         em.add_field(name = "Wallet",value = "0", inline=False)
         em.add_field(name = "Bank",value = "0",inline=False)
         await message.channel.send(embed=em)
-    
-    elif user_message.lower() == 'b! commands':
-        await message.channel.send(f'**All Bili Commands in detail** \n\t**b! beg:** Has a 0.000% chance to get Coins\n\t**b! fish:** Has a 100% to........... not get anything.\n\t**b! mine:** A useless command all you get is scammed.\n\t**b! work:** You are the first person to try to go to work without having any.\n\t**b! ping:** Tells you the bots latency and response time.\n\t**b! bye:** Just say it before you go offline\n\t**b! bal:** Used to see your coins. (Yes the same coins which you dont have)\n\t**b! commands:** Takes you here ')        
-     
+         
     elif user_message.lower() == 'b! roll 50':
         await message.reply(content=f'This is your random number {random.randint(0, 50)}')
 
