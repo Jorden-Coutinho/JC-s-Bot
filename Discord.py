@@ -1,5 +1,3 @@
-from calendar import c
-from importlib.resources import contents
 import discord
 from discord.ext import commands
 import random
@@ -9,10 +7,9 @@ import json
 from discord import message
 from discord import channel
 from discord import Embed
-
 TOKEN = 'OTMyMjg3MzM5NzA1ODI3MzM5.YeQyPg.l5-LEo-vhLBT1MjQmeP3fzg9Cgk'
 
-client = discord.Client()
+client = commands.Bot(command_prefix = "b!")
 
 @client.event
 async def on_ready():
@@ -43,26 +40,6 @@ async def on_message(message):
     
     elif user_message == 'b! roll 10':
         await message.reply(content=f'This is your random number {random.randint(0, 10)}')
-    
-    elif user_message.lower() == 'b! beg':
-        await message.channel.send(f'You begged and found 20 coins')
-
-    elif user_message.lower() == 'b! fish':
-        await message.channel.send(f'You dont even know how to fish HaHaHa {username}!')
-
-    elif user_message.lower() == 'b! mine':
-        await message.channel.send(f'You cant mine with ur hands LOL {username}!')
-
-    elif user_message.lower() == 'b! work':
-        await message.channel.send(f'Go get a job first {username}!')
-
-    elif user_message.lower() == 'b! help':
-        em = discord.Embed(title = f"All commands" , color = discord.Color.gold())
-        em.add_field(name = "Currency Commands",value = "", inline=False)
-        await message.channel.send(embed=em)
-        
-    elif user_message.lower() == 'b! hunt':
-        await message.channel.send(f'Cant shoot with ur fingers u aint spiderman either {username}!')
 
     elif user_message.lower() == 'b! bal':
         em = discord.Embed(title = f"{username}'s Balance" , color = discord.Color.teal())
@@ -112,24 +89,6 @@ async def on_message(message):
     
     elif user_message == 'b!roll 10':
         await message.reply(content=f'This is your random number {random.randint(0, 10)}')
-    
-    elif user_message.lower() == 'b!beg':
-        await message.channel.send(f'No Money for you loser {username}!')
-
-    elif user_message.lower() == 'b!fish':
-        await message.channel.send(f'You dont even know how to fish HaHaHa {username}!')
-
-    elif user_message.lower() == 'b!mine':
-        await message.channel.send(f'You cant mine with ur hands LOL {username}!')
-
-    elif user_message.lower() == 'b!work':
-        await message.channel.send(f'Go get a job first {username}!')
-
-    elif user_message.lower() == 'b!help':
-        await message.channel.send(f'> All Commands\n\n b! beg💵 \n\n b! fish🎣 \n\n b! mine⛏️ \n\n b! work💼 \n\n b! ping🏓 \n\n b! bye👋\n\n b! bal 🪙\n\n b! commands > ')
-        
-    elif user_message.lower() == 'b!hunt':
-        await message.channel.send(f'Cant shoot with ur fingers u aint spiderman either {username}!')
 
     elif user_message.lower() == 'b!commands':
         await message.channel.send(f'**All Bili Commands in detail** \n\t**b! beg:** Has a 0.000% chance to get Coins\n\t**b! fish:** Has a 100% to........... not get anything.\n\t**b! mine:** A useless command all you get is scammed.\n\t**b! work:** You are the first person to try to go to work without having any.\n\t**b! ping:** Tells you the bots latency and response time.\n\t**b! bye:** Just say it before you go offline\n\t**b! bal:** Used to see your coins. (Yes the same coins which you dont have)\n\t**b! commands:** Takes you here ')        
@@ -148,6 +107,7 @@ async def on_message(message):
         em.add_field(name = "Bot Team",value = "JC |#6241  and sz_skill\#5551", inline=False)
         em.add_field(name = "Partners",value = "Gamer's Galaxy (Server)",inline=False)
         await message.channel.send(embed=em)
+    
 
 
 @client.event
@@ -157,6 +117,7 @@ async def on_message_edit(before,after):
     em.add_field(name = "Before",value = before.content )
     em.add_field(name = "After",value = after.content, )
     await after.channel.send(embed=em)
+
 
 member = discord.member 
 client.run(TOKEN)
