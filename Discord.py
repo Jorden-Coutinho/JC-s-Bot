@@ -11,6 +11,33 @@ TOKEN = 'OTMyMjg3MzM5NzA1ODI3MzM5.YeQyPg.l5-LEo-vhLBT1MjQmeP3fzg9Cgk'
 
 client = commands.Bot(command_prefix = "b!")
 
+async def fake_user_send(
+    ctx: commands.Context, text: str, name: str, avatar_url: str
+) -> None:
+    """
+    Sends a message via a webhook to make it look like it was a real user that did.
+
+    Parameters:
+        ctx: The context of the command.
+        text: The text to send.
+        name: The name of the webhook.
+        avatar_url: The avatar URL of the webhook. Must be valid as the webhook
+                    creation process will fail if it is not.
+    """
+
+    # Create an webhook if it doesn't exist, so we don't have create a new
+    # webhook every time we call this.
+    webhook: discord.Webhook = None
+    channel_webhooks = await ctx.channel.webhooks()
+    if not list(filter(lambda w: w.name == name, channel_webhooks)):
+        webhook = await ctx.channel.create_webhook(
+            name=name, avatar=bytes(requests.get(avatar_url).content)
+        )
+    else:
+        webhook = list(filter(lambda w: w.name == name, channel_webhooks))[0]
+
+    await webhook.send(text)
+
 @client.event
 async def on_ready():
     print ('We have logged in as {0.user}'.format(client))
@@ -63,16 +90,16 @@ async def on_message(message):
         await message.channel.send(f'Haha good to see you try but robbing is not allowed here in my server earn your own cash rather than robbing someone elses')
     
     elif 'jorden' in message.content:
-      await message.channel.send(f'What now??')
+      await fake_user_send("What now??", "Jorden Coutinho", None)
     
     elif 'sz_skill' in message.content:
-      await message.channel.send(f'What now?? I am Busy ~sz_skill')
+      await fake_user_send("What now??", "sz_skill", None)
 
     elif 'Jorden' in message.content:
-      await message.channel.send(f'What now??')
+      await fake_user_send("What now??", "Jorden Coutinho", None)
 
     elif message.content == 'jorden':
-      await message.channel.send('+:skull:')
+      await fake_user_send(":skull:", "Jorden Coutinho", None)
 
     if message.content.startswith('b!ping'):
         start = time.time()
@@ -109,69 +136,10 @@ async def on_message(message):
 
 @client.event
 async def on_message_edit(before,after):
-
     em = discord.Embed(title = f"{before.author} edited a message", color = discord.Color.blue())
     em.add_field(name = "Before",value = before.content )
     em.add_field(name = "After",value = after.content, )
     await after.channel.send(embed=em)
-
-    async def fake_user_send(
-    ctx: commands.Context, text: str, name: str, avatar_url: str
-) -> None:
-    """
-    Sends a message via a webhook to make it look like it was a real user that did.
-
-    Parameters:
-        ctx: The context of the command.
-        text: The text to send.
-        name: The name of the webhook.
-        avatar_url: The avatar URL of the webhook. Must be valid as the webhook
-                    creation process will fail if it is not.
-    """
-
-    # Create an webhook if it doesn't exist, so we don't have create a new
-    # webhook every time we call this.
-    webhook: discord.Webhook = None
-    channel_webhooks = await ctx.channel.webhooks()
-    if not list(filter(lambda w: w.name == name, channel_webhooks)):
-        webhook = await ctx.channel.create_webhook(
-            name=name, avatar=bytes(requests.get(avatar_url).content)
-        )
-    else:
-        webhook = list(filter(lambda w: w.name == name, channel_webhooks))[0]
-
-    await webhook.send(text)
-
-    
-async def fake_user_send(
-    ctx: commands.Context, text: str, name: str, avatar_url: str
-) -> None:
-    """
-    Sends a message via a webhook to make it look like it was a real user that did.
-
-    Parameters:
-        ctx: The context of the command.
-        text: The text to send.
-        name: The name of the webhook.
-        avatar_url: The avatar URL of the webhook. Must be valid as the webhook
-                    creation process will fail if it is not.
-    """
-
-    # Create an webhook if it doesn't exist, so we don't have create a new
-    # webhook every time we call this.
-    webhook: discord.Webhook = None
-    channel_webhooks = await ctx.channel.webhooks()
-    if not list(filter(lambda w: w.name == name, channel_webhooks)):
-        webhook = await ctx.channel.create_webhook(
-            name=name, avatar=bytes(requests.get(avatar_url).content)
-        )
-    else:
-        webhook = list(filter(lambda w: w.name == name, channel_webhooks))[0]
-
-    await webhook.send(text)
-
-
-await fake_user_send(ctx, "Hello!", "your name", "avatar url")
     
 member = discord.member 
 client.run(TOKEN)
