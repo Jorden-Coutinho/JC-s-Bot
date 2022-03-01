@@ -10,7 +10,7 @@ from discord import channel
 from discord import Embed
 TOKEN = 'OTMyMjg3MzM5NzA1ODI3MzM5.YeQyPg.l5-LEo-vhLBT1MjQmeP3fzg9Cgk'
 DDLOGO = 'https://play-lh.googleusercontent.com/0oO5sAneb9lJP6l8c6DH4aj6f85qNpplQVHmPmbbBxAukDnlO7DarDW0b-kEIHa8SQ'
-JCLOGO = 'https://lh3.googleusercontent.com/l4xhFV7OPzc8WNLvsocgFLet5aUyomv-FJST-Uvji0kBl7LloY0LS4DfCY9Yin_A6KF9gR2OPwQxgPoaxPpX=w1920-h932'
+JCLOGO = 'https://media.discordapp.net/attachments/939394240633507850/948151775125446676/Copy_of_Watermark_1619326314525.png?width=657&height=657'
 
 client = commands.Bot(command_prefix = "b!")
 
@@ -93,16 +93,16 @@ async def on_message(message):
         await message.channel.send(f'Haha good to see you try but robbing is not allowed here in my server earn your own cash rather than robbing someone elses')
     
     elif 'jorden' in message.content:
-      await fake_user_send(ctx, "What now??", "Jorden Coutinho", JCLOGO)
+      await fake_user_send(message, "What now??", "Jorden Coutinho", JCLOGO)
     
     elif 'sz_skill' in message.content:
-      await fake_user_send(ctx, "What now??", "sz_skill", DDLOGO)
+      await fake_user_send(message, "What now??", "sz_skill", DDLOGO)
 
     elif 'Jorden' in message.content:
-      await fake_user_send(ctx, "What now??", "Jorden Coutinho", JCLOGO)
+      await fake_user_send(message, "What now??", "Jorden Coutinho", JCLOGO )
     
     elif message.content == 'jorden':
-      await fake_user_send(ctx, ":skull:", "Jorden Coutinho", JCLOGO)
+      await fake_user_send(message, ":skull:", "Jorden Coutinho", JCLOGO)
 
     if message.content.startswith('b!ping'):
         start = time.time()
@@ -146,3 +146,4 @@ async def on_message_edit(before,after):
     
 member = discord.member 
 client.run(TOKEN)
+#run pip install in powershell
