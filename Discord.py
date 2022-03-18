@@ -8,8 +8,9 @@ import requests
 from discord import message
 from discord import channel
 from discord import Embed
+import asyncio
 TOKEN = 'OTMyMjg3MzM5NzA1ODI3MzM5.YeQyPg.l5-LEo-vhLBT1MjQmeP3fzg9Cgk'
-DDLOGO = 'https://play-lh.googleusercontent.com/0oO5sAneb9lJP6l8c6DH4aj6f85qNpplQVHmPmbbBxAukDnlO7DarDW0b-kEIHa8SQ'
+DDLOGO = 'https://cdn.discordapp.com/avatars/865160569303859240/a0c2a9ab448add501668d2146e1b35f6.jpg?size=1024'
 JCLOGO = 'https://media.discordapp.net/attachments/939394240633507850/948151775125446676/Copy_of_Watermark_1619326314525.png?width=657&height=657'
 
 client = commands.Bot(command_prefix = "b!")
@@ -73,8 +74,9 @@ async def on_message(message):
 
     elif user_message.lower() == 'b! bal':
         em = discord.Embed(title = f"{username}'s Balance" , color = discord.Color.teal())
-        em.add_field(name = "Wallet",value = "0", inline=False)
-        em.add_field(name = "Bank",value = "0",inline=False)
+        em.add_field(name = "Wallet",value = "69", inline=False)
+        em.add_field(name = "Bank",value = "0", inline=False)
+        em.add_field(name = "💀", value = "Never Gonna Give you up", inline=True)
         await message.channel.send(embed=em)
          
     elif user_message.lower() == 'b! roll 50':
@@ -97,9 +99,6 @@ async def on_message(message):
     
     elif 'sz_skill' in message.content:
       await fake_user_send(message, "What now??", "sz_skill", DDLOGO)
-
-    elif 'Jorden' in message.content:
-      await fake_user_send(message, "What now??", "Jorden Coutinho", JCLOGO )
     
     elif message.content == 'jorden':
       await fake_user_send(message, ":skull:", "Jorden Coutinho", JCLOGO)
@@ -117,8 +116,7 @@ async def on_message(message):
     elif user_message == 'b!roll 10':
         await message.reply(content=f'This is your random number {random.randint(0, 10)}')
 
-    elif user_message.lower() == 'b!commands':
-        await message.channel.send(f'**All Bili Commands in detail** \n\t**b! beg:** Has a 0.000% chance to get Coins\n\t**b! fish:** Has a 100% to........... not get anything.\n\t**b! mine:** A useless command all you get is scammed.\n\t**b! work:** You are the first person to try to go to work without having any.\n\t**b! ping:** Tells you the bots latency and response time.\n\t**b! bye:** Just say it before you go offline\n\t**b! bal:** Used to see your coins. (Yes the same coins which you dont have)\n\t**b! commands:** Takes you here ')        
+    
      
     elif user_message.lower() == 'b!roll 50':
         await message.reply(content=f'This is your random number {random.randint(0, 50)}')
@@ -131,11 +129,35 @@ async def on_message(message):
     
     elif user_message.lower() == 'b! botinfo':
         em = discord.Embed(title = f"Bili Bot Info" , color = discord.Color.gold())
-        em.add_field(name = "Bot Team",value = "JC |#6241  and sz_skill\#5551", inline=False)
+        em.add_field(name = "Bot Team",value = "Jorden Coutinho#6241  and sz_skill\#5551", inline=False)
         em.add_field(name = "Partners",value = "Gamer's Galaxy (Server)",inline=False)
         await message.channel.send(embed=em)
     
+    elif user_message in ("GTN", "b! egtn", "B! egtn", "b! eGTN" ):
+        pass
+        number = random.randint(1, 10)
+        await message.channel.send('Guess the number I am thinking of')
 
+        def check(msg):
+            return msg.author == message.author and msg.channel == message.channel and int(msg.content) in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+        msg = await client.wait_for("message", check=check)
+
+        if int(msg.content) == number:
+            await message.channel.send("You got it right!!")
+        else:
+            await message.channel.send(f"Nope it was **{number}**")
+
+    elif user_message == ("b! beg"):
+        await channel.message.send(f"#rickroll here")
+
+    elif user_message == ("bmr"):
+        em = discord.Embed(title = f"Mod Rules" , color = discord.Color.blue())
+        em.add_field(name = "Please read carefully",value = " 1. There is a mod only channel which you shall get access to soon if you are reading these rules, use it to log any things which happened in the server every 48 hours (at maximum)\n\n 2️. Please do not give any free roles to anyone without asking me, unless they need it (not want, need) and remove it as soon as the work is done\n\n 3️. If you would like to ban someone or kick for a good reason please do then dm me the reason, instead of kicking or banning them\n\n 4️. You should moderate and help the members whenever you can.\n\n 5️. If you tell any member to stop doing something which is against the rules but they do not stop take action against them such as warn, timeout. \n\t DM me if you need more help",inline=False)
+        await message.channel.send(embed=em)
+
+    elif user_message == ("b!tag spamming"):
+        await message.channel.send("Spamming: Sending the same message indiscriminately to (a large number of internet users) is known as spamming.")
 
 @client.event
 async def on_message_edit(before,after):
@@ -143,7 +165,34 @@ async def on_message_edit(before,after):
     em.add_field(name = "Before",value = before.content )
     em.add_field(name = "After",value = after.content, )
     await after.channel.send(embed=em)
+
+
     
+
+intents = discord.Intents.all()
+
+bot = commands.Bot(command_prefix = "b!", intents=intents)
+
+@bot.event
+async def on_member_remove(member):
+    leave_channel = bot.get_channel(934387502083612702)
+    modchannel = bot.get_channel(933966074955833445)
+    em = discord.Embed(title = f"Goodbye Message" , color = discord.Color.gold())
+    em.add_field(name = "Bye", value = "{member.mention} has left the server :sob:", inline=False)
+
+    try:
+        await member.send(f"Hey {member.display_name}! goodbye")
+    except:
+        await modchannel.send(f"{member.mention} I can't dm you, but goodbye")
+        
+"""
+on_member_ban
+on_member_join
+on_member_remove
+on_member_unban
+on_member_update
+"""
+
+
 member = discord.member 
 client.run(TOKEN)
-#run pip install in powershell
